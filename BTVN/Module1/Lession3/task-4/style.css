@@ -1,0 +1,45 @@
+body {
+    background-color: #aaa;
+    padding: 50px;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 60px;
+}
+
+.column,
+.column-center {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+}
+
+.card {
+    width: 150px;
+    height: 100px;
+    color: white;
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 18px;
+    border: 2px solid #0d4607;
+}
+
+.m1 { background-color: #5faa2e; }
+.m2 { background-color: #138a06; }
+.m3 { background-color: #1ca6e8; }
+.m4 { background-color: #a00426; }
+.m5 { background-color: #e41183; }
+.m6 { background-color: #0546e8; }
+
+.goal {
+    background-color: #f7d9af;
+    color: black;
+    border: 1px solid #e9a839;
+}
+  

@@ -1,0 +1,19 @@
+.box-img img {
+    width: 600px;
+    height: 400px;
+    object-fit: cover;
+}
+.box-content{
+    width: 600px;
+    height: 400px;
+    object-fit: cover;
+}
+h1 {
+    width: 600px;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+}
+

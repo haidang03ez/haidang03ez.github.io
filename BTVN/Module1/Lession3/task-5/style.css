@@ -1,0 +1,62 @@
+body {
+    background-color: #c1d8c6;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    padding: 20px 30px;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    background-color: aliceblue;
+    align-items: center;
+    padding: 16px 32px;
+    border-radius: 5px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.header img {
+    height: 70px;
+    width: 70px;
+    object-fit: cover;
+    border-radius: 70%;
+}
+
+.account {
+    background-color: #043016;
+    padding: 10px;
+    border-radius: 5px;
+    display: flex;
+    gap: 12px;
+}
+
+button {
+    padding: 8px 16px;
+    font-size: 14px;
+    border-radius: 6px;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.create-cv {
+    background-color: #2ecc71;
+    color: white;
+}
+.create-cv:hover {
+    background-color: #27ae60;
+    transform: scale(1.1);
+}
+
+.sign-up {
+    background-color: #3498db;
+    color: white;
+}
+.sign-up:hover {
+    background-color: #2980b9;
+    transform: scale(1.1);
+}
+
+.content {
+    padding: 10px 500px 10px 50px;
+}
+  
