@@ -7,6 +7,11 @@
 }
 
 /* Header */
+.header{
+    position: fixed;
+    width: 100vw;;
+}
+
 .navbar{
     display: flex;
     padding: 1rem 2rem;
@@ -26,12 +31,6 @@
 }
 
 /* Main */
-.main{
-    /* display: flex;
-    justify-content: center;
-    align-items: center; */
-}
-
 .slide img {
     width: 100vw;
     height: 40vh;
@@ -54,20 +53,91 @@
 
 .blog {
     display: grid;
-    padding: 1rem;
+    justify-content: space-around;
+    padding: 2rem;
+    flex-direction: column;
+    justify-content: space-between; /* các thành phần trong card cách đều nhau theo chiều dọc */
+    align-items: center;
     grid-template-columns: repeat(4, 1fr);
-    grid-template-rows: repeat(4, 1fr);
-    gap: 8px;
+    grid-template-rows: repeat(1, 1fr);
+    gap: 2rem;
 }
 
-.card-body {
-    text-align: left;
-    width: 18rem;
-    padding: 10px;
+.card-item button {
+    margin-top: 0.5rem;
+    color: rgb(255, 255, 255);
+    width: 7rem;
+    background-color: #be9931;
 }
 
+.card-item img {
+    width: 100%;
+    height: auto;
+}
 
+.card-item h3 {
+    color: goldenrod;
+    margin: 10px 0;
+}
 
+.card-item {
+    font-size: 0.8rem;
+    color:#945c13;
+    flex-grow: 1;
+}
+
+.main-under{
+    display: flex;
+}
+
+.preview-blog {
+    color: #945c13;
+    padding: 2rem;
+    width: 50vw;
+    gap: 1rem;
+}
+
+.preview-blog button {
+    margin-top: 0.5rem;
+    color: rgb(255, 255, 255);
+    width: 7rem;
+    background-color: #be9931;
+}
+
+.preview-blog img {
+    margin: 1rem 0;
+    width: 100%;
+    height: auto;
+    gap: 1rem;
+}
+
+.resoomer {
+    padding: 2rem;
+}
+
+.resoomer div:nth-child(1) {
+    width: 50vw;
+    display: flex;
+    justify-content: space-around;
+}
+
+.resoomer .categories, 
+.useful-links {
+    gap: 10px;
+    color: #945c13;
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+}
+
+.resoomer .useful-links {
+    
+}
+
+.resoomer div:nth-child(2) {
+    margin-top: 2rem;
+
+}
 
 
 
@@ -93,7 +163,7 @@ button{
     border: none;
     border-radius: 5px;
     background-color: white;
-    transition: all 0.3s ease;
+    transition: all 0.2s ease;
 }
 
 button:active {
@@ -102,8 +172,8 @@ button:active {
     transform: scale(1.2);
 }
 
-.intro h1,
-p,
-.card-item {
+h1,
+h3,
+p {
     font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
