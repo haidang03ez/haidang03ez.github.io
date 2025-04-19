@@ -1,20 +1,76 @@
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-size: 62.5%;
+.container {
+    display: grid;
+    grid-template-rows: auto 1fr;
+    grid-template-columns: 1fr;
+    height: 100vh;
+}
+  
+.navbar {
+    background-color: #ddd;
+    padding: 10px;
+    text-align: center;
 }
 
-.text {
-    font-size: 2em;
+.main {
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    grid-gap: 10px;
+    padding: 10px;
 }
 
-.text-child {
-    font-size: 1rem;
+.sidebar {
+    background-color: #3399ff;
+    color: white;
+    padding: 10px;
 }
 
-@media only screen and (max-width: 700px) {
-    .text{
-        background-color: aqua;
+.main-body {
+    display: flex;
+    flex-direction: column;
+}
+
+.main-content {
+    background-color: white;
+    border: 1px solid #ccc;
+    height: 100px;
+    margin-bottom: 10px;
+}
+
+.section {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* 3 cột 1 dòng */
+    grid-gap: 10px;
+    margin-bottom: 10px;
+}
+
+.section div {
+    padding: 20px;
+    color: white;
+    text-align: center;
+}
+
+.section div:nth-child(1) { background-color: #e74c3c; } /* đỏ */
+.section div:nth-child(2) { background-color: #9b59b6; } /* tím */
+.section div:nth-child(3) { background-color: #f39c12; } /* cam */
+.section div:nth-child(4) { background-color: #444; grid-column: span 3; } /* xám, chiếm 3 cột */
+
+.copyright {
+    background-color: #ddd;
+    padding: 10px;
+    text-align: center;
+}
+
+/* Responsive cho màn hình nhỏ */
+@media (max-width: 768px) {
+    .main {
+        grid-template-columns: 1fr;
+    }
+
+    .section {
+        grid-template-columns: 1fr;
+    }
+
+    .section div:nth-child(4) {
+        grid-column: span 1;
     }
 }
