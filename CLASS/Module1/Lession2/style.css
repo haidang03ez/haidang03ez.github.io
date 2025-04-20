@@ -1,0 +1,14 @@
+h2 {
+    color: blue;
+    text-align: center;
+}
+
+/* Khai báo class - có thể dùng cho nhiều element */
+.text{
+    color: red;
+}
+
+/* Khai báo id - chỉ dùng cho 1 element */
+#text_decor{
+    color: green;
+}
