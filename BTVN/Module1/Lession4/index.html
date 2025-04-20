@@ -1,105 +1,173 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
-    <title>Lession 4</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="style.css" />
+  <title>Lesson 4</title>
 </head>
 <body>
-    <div class="container">
-        <div class="header">
-            <nav class="navbar">
-                <a class="navbar-brand" href="#">Classic</a>
-                <div class="navbar-collapse">
-                    <button class="nav-link" href="#">Home</button>
-                    <button class="nav-link" href="#">About</button>
-                    <button class="nav-link" href="#">Blog</button>                   
-                    <button class="nav-link" href="#">Contact</button>
-                </div>
-            </nav>
+  <div class="container">
+    <!-- Header -->
+    <header class="header">
+      <nav class="navbar">
+        <a class="navbar-brand" href="#">Classic</a>
+        <div class="navbar-collapse">
+          <button class="nav-link">Home</button>
+          <button class="nav-link">About</button>
+          <button class="nav-link">Blog</button>
+          <button class="nav-link">Contact</button>
         </div>
-        <div class="main">
-            <div class="slide">
-                <img src="/img/image.png" alt="slide">
-                <div class="intro">
-                    <h1>Introduction</h1>
-                    <p>Suspendisse ut magna vel velit cursus tempor ut nec nunc. Mauris vehicula, augue in tincidunt porta, purus ipsum blandit massa.</p>
-                </div>
-            </div>
-            <div class="blog">
-                <div class="card-item">
-                    <img src="/img/imgitem.png" alt="Image 4">
-                    <h3>Lorem ipsum dolor #4</h3>
-                    <p>Aenean cursus tellus mauris, quis consequat mauris dapibus id. Donec scelerisque porttitor pharetra</p>
-                    <button>Read more</button>
-                </div>
+      </nav>
+    </header>
 
-                <div class="card-item">
-                    <img src="/img/imgitem.png" alt="Image 4">
-                    <h3>Lorem ipsum dolor #4</h3>
-                    <p>Aenean cursus tellus mauris, quis consequat mauris dapibus id. Donec scelerisque porttitor pharetra</p>
-                    <button>Read more</button>
-                </div>
-
-                <div class="card-item">
-                    <img src="/img/imgitem.png" alt="Image 4">
-                    <h3>Lorem ipsum dolor #4</h3>
-                    <p>Aenean cursus tellus mauris, quis consequat mauris dapibus id. Donec scelerisque porttitor pharetra</p>
-                    <button>Read more</button>
-                </div>
-
-                <div class="card-item">
-                    <img src="/img/imgitem.png" alt="Image 4">
-                    <h3>Lorem ipsum dolor #4</h3>
-                    <p>Aenean cursus tellus mauris, quis consequat mauris dapibus id. Donec scelerisque porttitor pharetra</p>
-                    <button>Read more</button>
-                </div>
-            </div>
-            <div class="main-under">
-                <div class="preview-blog">
-                    <h3>Pellentesque fermentum mauris et posuere</h3>
-                    <p>Vivamus accumsan blandit ligula. Sed lobortis efficitur sapien</p>
-                    <img src="/img/imgitem.png" alt="Image 4">
-                    <p>Donec tempor lobortis tortor, in feugiat massa facilisis sed. Ut dignissim viverra pretium. In eu justo maximus turpis feugiat finibus scelerisque nec eros. Cras nec lectus tempor nibh vestibulum eleifend et ac elit.</p>
-                    <p>Morbi vel pharetra massa, non iaculis tortor. Nulla porttitor tincidunt felis et feuglat. Vivamus fermentum ligula justo, sit amet blandit nisl volutpat id. Fusce sagittis ultricies felis, non luctus mauris lacinia quis.</p>
-                    <p>Ut fringilla lacus ac tempor ullamcorper. Mauris iaculis placerat ex et mattis.</p>
-                    <p>Mauris id vulputate lectus, id fermentum sapien.</p>
-                    <button>Read more</button>
-                </div>
-                <div class="resoomer">
-                    <div>
-                        <div class="categories">
-                            <h3>Categories</h3>
-                            <a href="#">Categories 1</a>
-                            <a href="#">Categories 2</a>
-                            <a href="#">Categories 3</a>
-                            <a href="#">Categories 4</a>
-                            <a href="#">Categories 5</a>
-                        </div>
-                        <div class="useful-links">
-                            <h3>Useful-links</h3>
-                            <a href="#">Useful-links 1</a>
-                            <a href="#">Useful-links 2</a>
-                            <a href="#">Useful-links 3</a>
-                            <a href="#">Useful-links 4</a>
-                            <a href="#">Useful-links 5</a>
-                        </div>
-                    </div>
-                    <div>
-                        <h3>Related Post</h3>
-                        <div class="post">
-                            
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
+    <!-- Main -->
+    <main class="main">
+      <!-- Slide -->
+      <section class="slide">
+        <img src="/img/image.png" alt="slide" />
+        <div class="intro">
+          <h1>Introduction</h1>
+          <p>Suspendisse ut magna vel velit cursus tempor ut nec nunc. Mauris vehicula, augue in tincidunt porta, purus ipsum blandit massa.</p>
         </div>
-        
-        <div class="footer">
+      </section>
 
+      <!-- Blog Cards -->
+      <section class="blog">
+        <!-- Repeatable Card Item -->
+        <div class="card-item">
+          <img src="/img/imgitem.png" alt="Blog image" />
+          <h3>Lorem ipsum dolor #4</h3>
+          <p>Aenean cursus tellus mauris, quis consequat mauris dapibus id. Donec scelerisque porttitor pharetra</p>
+          <button>Read more</button>
         </div>
-    </div>
+        <div class="card-item">
+          <img src="/img/imgitem.png" alt="Blog image" />
+          <h3>Lorem ipsum dolor #4</h3>
+          <p>Aenean cursus tellus mauris, quis consequat mauris dapibus id. Donec scelerisque porttitor pharetra</p>
+          <button>Read more</button>
+        </div>
+        <div class="card-item">
+          <img src="/img/imgitem.png" alt="Blog image" />
+          <h3>Lorem ipsum dolor #4</h3>
+          <p>Aenean cursus tellus mauris, quis consequat mauris dapibus id. Donec scelerisque porttitor pharetra</p>
+          <button>Read more</button>
+        </div>
+        <div class="card-item">
+          <img src="/img/imgitem.png" alt="Blog image" />
+          <h3>Lorem ipsum dolor #4</h3>
+          <p>Aenean cursus tellus mauris, quis consequat mauris dapibus id. Donec scelerisque porttitor pharetra</p>
+          <button>Read more</button>
+        </div>
+      </section>
+
+      <!-- Blog Preview + Sidebar -->
+      <section class="main-under">
+        <div class="preview-blog">
+          <h3>Pellentesque fermentum mauris et posuere</h3>
+          <p>Vivamus accumsan blandit ligula. Sed lobortis efficitur sapien</p>
+          <img src="/img/imgitem.png" alt="Blog preview image" />
+          <p>Donec tempor lobortis tortor, in feugiat massa facilisis sed. Ut dignissim viverra pretium. In eu justo maximus turpis feugiat finibus scelerisque nec eros. Cras nec lectus tempor nibh vestibulum eleifend et ac elit.</p>
+          <p>Morbi vel pharetra massa, non iaculis tortor. Nulla porttitor tincidunt felis et feugiat. Vivamus fermentum ligula justo, sit amet blandit nisl volutpat id. Fusce sagittis ultricies felis, non luctus mauris lacinia quis.</p>
+          <p>Ut fringilla lacus ac tempor ullamcorper. Mauris iaculis placerat ex et mattis.</p>
+          <p>Mauris id vulputate lectus, id fermentum sapien.</p>
+          <button>Read more</button>
+        </div>
+
+        <!-- Sidebar -->
+        <aside class="resoomer">
+          <div class="links">
+            <div class="categories">
+              <h3>Categories</h3>
+              <ul>
+                <li><a href="#">Categories 1</a></li>
+                <li><a href="#">Categories 2</a></li>
+                <li><a href="#">Categories 3</a></li>
+                <li><a href="#">Categories 4</a></li>
+                <li><a href="#">Categories 5</a></li>
+              </ul>
+            </div>
+            <div class="useful-links">
+              <h3>Useful Links</h3>
+              <ul>
+                <li><a href="#">Useful-link 1</a></li>
+                <li><a href="#">Useful-link 2</a></li>
+                <li><a href="#">Useful-link 3</a></li>
+                <li><a href="#">Useful-link 4</a></li>
+                <li><a href="#">Useful-link 5</a></li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="related">
+            <h4>Related Posts</h4>
+            <ul class="related-posts">
+              <li class="post-item">
+                <img src="/img/imgitem.png" alt="Ảnh mô tả" />
+                <div class="post-content">
+                  <h3>Lorem ipsum dolor</h3>
+                  <p>Aenean cursus tellus mauris, quis consequat mauris dapibus id.</p>
+                </div>
+              </li>
+              <li class="post-item">
+                <img src="/img/imgitem.png" alt="Ảnh mô tả" />
+                <div class="post-content">
+                  <h3>Lorem ipsum dolor</h3>
+                  <p>Aenean cursus tellus mauris, quis consequat mauris dapibus id.</p>
+                </div>
+              </li>
+              <li class="post-item">
+                <img src="/img/imgitem.png" alt="Ảnh mô tả" />
+                <div class="post-content">
+                  <h3>Lorem ipsum dolor</h3>
+                  <p>Aenean cursus tellus mauris, quis consequat mauris dapibus id.</p>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </aside>
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="footer-section">
+        <h4>Proin eu posuere felis</h4>
+        <p>Classic is free HTML CSS website template provided...</p>
+        <p><strong>Danny Egg (Executive)</strong></p>
+      </div>
+
+      <div class="footer-section">
+        <h4>Nulla tortor dolor</h4>
+        <ul>
+          <li><a href="#">Tincidunt non faucibus</a></li>
+          <li><a href="#">Vestibulum tempor</a></li>
+          <li><a href="#">Fusce non turpis euismod</a></li>
+          <li><a href="#">Lorem ipsum dolor sit</a></li>
+          <li><a href="#">Nam in augue consectetur</a></li>
+          <li><a href="#">Text Link Color #CCCCCC</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-section">
+        <h4>Etiam mollis ornare</h4>
+        <p>Aenean cursus tellus mauris...</p>
+        <button>Read More</button>
+      </div>
+
+      <div class="footer-section">
+        <h4>Fusce non turpis</h4>
+        <div class="gallery">
+          <img src="thumb1.jpg" alt="" />
+          <img src="thumb2.jpg" alt="" />
+          <img src="thumb3.jpg" alt="" />
+          <img src="thumb4.jpg" alt="" />
+        </div>
+        <button>Browse</button>
+      </div>
+      
+      <p class="copyright">Copyright 2016 Your Company Name</p>
+    </footer>
+  </div>
 </body>
 </html>
