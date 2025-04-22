@@ -10,12 +10,12 @@ body {
     font-family: 'Poppins', sans-serif; /* Font chữ chính */
 }
 
-h1, h2, h3 {
-    font-family: 'Lobster', cursive; /* Font chữ trang trí cho tiêu đề */
+h1, h2, h3, label, button, input {
+    font-family: 'Lobster', cursive; 
 }
 
 p {
-    font-family: 'Playfair Display', serif; /* Font chữ sang trọng cho đoạn văn */
+    font-family: 'Playfair Display', serif; 
 }
 
 img {
@@ -70,7 +70,7 @@ img {
 
 .contact-form label{
     width: 100%;
-    font-size: 1.5rem;
+    font-size: 1.7rem;
     text-align: left;
 }
 
