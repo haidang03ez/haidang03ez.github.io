@@ -1,0 +1,34 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.nav-bar nav {
+    padding: 10px 5rem;
+    background-color: #ffffff;
+    position: fixed;
+    width: 100%;
+    border-bottom: 1px solid #ccc;
+}
+
+.nav-item {
+    diplay: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.btn.btn-primary {
+    background-color: #975e08; /* Màu nền */
+    color: white; /* Màu chữ */
+    border: none; /* Đường viền */
+    padding: 10px 20px; /* Khoảng cách bên trong nút */
+    font-size: 16px; /* Kích thước chữ */
+    transition: background-color 0.3s ease, transform 0.2s; /* Hiệu ứng khi hover */
+}
+
+.btn.btn-primary:hover {
+    background-color: #c7a50c; /* Màu nền khi hover */
+    transform: scale(1.05); /* Hiệu ứng phóng to nhẹ khi hover */
+}
