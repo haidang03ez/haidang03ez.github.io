@@ -5,30 +5,258 @@
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-.nav-bar nav {
-    padding: 10px 5rem;
-    background-color: #ffffff;
+.btn.btn-primary {
+    background-color: #b6863d; 
+    font-weight: bold;
+    color: white; 
+    border: none; 
+    border-radius: 0px;
+    padding: 20px;
+    font-size: 1.5rem; 
+}
+
+.btn.btn-primary:hover {
+    background-color: #c7a50c; 
+    transform: scale(1.05); 
+}
+
+/* Heading */
+.nav-bar {
     position: fixed;
+    top: 0;
+    left: 0;
     width: 100%;
+    background: #fff;
+    z-index: 1000;
+    padding: 10px 5rem;
     border-bottom: 1px solid #ccc;
 }
 
 .nav-item {
-    diplay: flex;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 1rem;
+}
+
+.nav-link {
+    position: relative;
+    color: #4b4006;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+
+.nav-link:hover {
+    color: #947c14; 
+    transform: scale(1.15); 
+}
+
+.search-bar {
+    display: flex;
     align-items: center;
     justify-content: center;
 }
 
-.btn.btn-primary {
-    background-color: #975e08; /* Màu nền */
-    color: white; /* Màu chữ */
-    border: none; /* Đường viền */
-    padding: 10px 20px; /* Khoảng cách bên trong nút */
-    font-size: 16px; /* Kích thước chữ */
+.search-bar input {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-radius: 0px;
+    border-bottom: 2px solid #ad931c;
+    margin-right: 10px;
+}
+
+.nav-item .btn.btn-primary {
+    background-color: #975e08; 
+    font-weight: bold;
+    color: white; 
+    border: none; 
+    border-radius: 0px;
+    padding: 10px 20px;
+    font-size: 16px; 
+}
+
+.nav-item .btn.btn-primary:hover {
+    background-color: #c7a50c; 
+    transform: scale(1.05); 
+}
+
+.btn.btn-secondary.dropdown-toggle {
+    background-color: #ffffff; 
+    color: rgb(0, 0, 0); 
+    border: none; 
+    padding: 10px 20px;
+    font-size: 16px; 
+    text-decoration: none;
     transition: background-color 0.3s ease, transform 0.2s; /* Hiệu ứng khi hover */
 }
 
-.btn.btn-primary:hover {
-    background-color: #c7a50c; /* Màu nền khi hover */
-    transform: scale(1.05); /* Hiệu ứng phóng to nhẹ khi hover */
+.btn.btn-secondary.dropdown-toggle::after {
+    display: none;
+}
+
+/* Main */
+/* Banner */
+.banner {
+    padding: 4rem 0;
+}
+
+.carousel-item {
+    height: 70vh; 
+}
+
+.carousel-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.banner .btn.btn-primary {
+    background-color: #b6863d; 
+    font-weight: bold;
+    color: white; 
+    border: none; 
+    border-radius: 0px;
+    padding: 20px;
+    font-size: 1.5rem; 
+}
+
+.banner .btn.btn-primary:hover {
+    background-color: #c7a50c; 
+    transform: scale(1.05); 
+}
+
+.carousel-indicators {
+    position: relative
+}
+
+.caption-banner {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    color: #fff;
+    z-index: 10;
+}
+
+.carousel-inner img{
+    filter: brightness(0.5);
+}
+
+/* Introduction */
+.introduction {
+    background-color: #e0e0e0;
+    display: flex;
+    padding: 4rem;
+    text-align: left;
+    gap: 2rem;
+}
+
+.intro-text {
+    width: 50%;
+}
+
+.intro-video {
+    width: 50%;
+}
+
+/* Booking Step */
+
+.booking-step {
+    text-align: center;
+    padding: 2rem 4rem;
+}
+.step {
+    display: flex;
+    justify-content: space-around;
+    padding: 4rem 0;
+}
+
+.step-item {
+    padding: 1rem;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem; 
+    
+}
+
+.step-item .circle {
+    width: 11rem;  /* Đường kính của hình tròn */
+    height: 11rem; /* Chiều cao bằng chiều rộng để tạo hình tròn hoàn hảo */
+    background-color: #dddddd;
+    border-radius: 50%; /* Làm tròn các góc 50% để tạo hình tròn */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 2rem
+}
+
+.step-item .circle .child-circle {
+    width: 2.5rem;  /* Đường kính của hình tròn */
+    height: 3rem; /* Chiều cao bằng chiều rộng để tạo hình tròn hoàn hảo */
+    background-color: #d47f47;
+    border-radius: 50%;
+    color: #fff;
+}
+
+.step-item .circle i {
+    margin-top: 1rem;
+    font-size: 5rem; 
+    color: rgb(0, 0, 0); 
+}
+
+/* Quick Booking */
+
+.quick-booking {
+    position: relative;
+    font-size: 1.5rem;
+}
+
+.booking-img {
+    position: relative;
+    height: 50vh;
+}
+
+.booking-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: brightness(0.5);
+}
+
+.quick-booking-items {
+    position: absolute;
+    top: 50%;          /* Đặt vị trí từ top */
+    left: 50%;         /* Đặt vị trí từ left */
+    transform: translate(-50%, -50%); /* Căn giữa element */
+    width: 100%;       /* Chiều rộng 100% */
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    text-align: center;
+    padding: 4rem;
+    gap: 1rem;
+    z-index: 10;  
+}
+
+.quick-booking .booking-item{
+    color: #fff;
+    width: 25%;
+    padding: 2rem;
+    gap: 1rem;
+}
+
+.date-display input{
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-radius: 0px;
+    border-bottom: 2px solid #ad931c;
+    margin-right: 10px;
 }
