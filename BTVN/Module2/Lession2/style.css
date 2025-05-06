@@ -1,3 +1,4 @@
+/* Reset CSS */
 * {
     margin: 0;
     padding: 0;
@@ -5,16 +6,77 @@
     font-size: 62.5%;
 }
 
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    font-size: 1.6rem;
+}
+
 .quizz-1,
 .quizz-2 {
-    display: flex;
     padding: 2rem;
-    flex-direction: row;
+    margin: 2rem 0;
+    border-radius: 0.8rem;
+    display: flex;
     align-items: center;
     justify-content: center;
     gap: 4rem;
 }
 
+.quizz-1 {
+    background-color: #f0f0f0;
+}
+
 .quizz-2 {
+    background-color: rgba(98, 124, 100, 0.5);
     flex-wrap: wrap;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 2rem 0;
+}
+
+table th,
+table td {
+    padding: 1.5rem;
+    border: 1px solid #ddd;
+    font-size: 1.6rem;
+}
+
+table th {
+    background-color: #f5f5f5;
+    font-weight: bold;
+    text-align: left;
+}
+
+input,
+select,
+button {
+    padding: 1rem; 
+    font-size: 1.6rem;
+    border: 1px solid #ddd;
+    border-radius: 0.4rem;
+}
+
+button {
+    background-color: #007bff !important;
+    color: white !important;
+    cursor: pointer !important;
+    border: none !important;
+    padding: 1rem 2rem !important;
+    transition: background-color 0.3s ease !important;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+.result {
+    font-size: 1.6rem;
+    padding: 1rem;
+    margin: 1rem 0;
+    border-radius: 0.4rem;
+    background-color: #5cc458;
 }

@@ -14,20 +14,54 @@
             <h3>Kiểm tra chuỗi</h3>
             <input type="text" id="input-quizz-1-0" placeholder="Nhập chuỗi của bạn">
             <button class="btn btn-primary" onclick="countString()">Kiểm tra</button>
-            <div id="result-quizz-1-0"></div>
+            <div class="result" id="result-quizz-1-0"></div>
         </div>
 
         <div class="question-2">
             <h3>Kiểm tra tuổi</h3>
             <input type="text" id="input-quizz-1-1" placeholder="Nhập tuổi của bạn">
             <button class="btn btn-primary" onclick="checkAge()">Kiểm tra</button>
-            <div id="result-quizz-1-1"></div>
+            <div class="result" id="result-quizz-1-1"></div>
         </div>
     </div>
 
     <div class="quizz-2">
-        
-        
+        <h1>Quizz 2</h1>
+        <table>
+            <tr>
+                <th>Câu hỏi</th>
+                <th>Lựa chọn</th>
+            </tr>
+            <tr>
+                <td>Hãy tính tổng các số từ 1 đến 50.</td>
+                <td>0</td>
+            </tr>
+            <tr>
+                <td>Hãy tính tổng các số chẵn từ -10 đến 50.</td>
+                <td>1</td>
+            </tr>
+            <tr>
+                <td>Hãy in ra màn hình console các số chia hết cho 9 trong đoạn [-100; 100]</td>
+                <td>2</td>
+            </tr>
+            <tr>
+                <td>Hãy dùng while để in ra dãy số từ 1 đến 200.</td>
+                <td>3</td>
+            </tr>
+            <tr>
+                <td>Hãy nhập vào 1 chuỗi s và 1 số l. Hãy thêm vào cuối chuỗi s ký tự ‘a’ cho đến khi độ dài chuỗi s >= l.</td>
+                <td>4</td>
+            </tr>
+            <tr>
+                <td>Nhập vào 2 số 0 <= x < y <= 100. Hãy tăng dần giá trị của x, giảm dần giá trị của y và in ra các giá trị của x và y trong mỗi lần lặp cho đến khi x >= y.</td>
+                <td>5</td>
+            </tr>
+        </table>
+        <input type="text" id="input-quizz-2" placeholder="Nhập lựa chọn">
+        <button class="btn btn-primary" onclick="quizzCalc()">Kiểm tra</button>
+        <div class="result" id="result-quizz-2">
+            Kết quả sẽ hiển thị ở đây: 
+        </div>
     </div>
     
     <script src="main.js"></script>
