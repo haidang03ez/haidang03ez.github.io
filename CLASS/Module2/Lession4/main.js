@@ -43,9 +43,7 @@ function sortMath(students) {
   for (let i = 0; i < students.length - 1; i++) {
     for (let j = 0; j < students.length - i - 1; j++) {
       if (students[j].math > students[j + 1].math) {
-        const temp = students[j];
-        students[j] = students[j + 1];
-        students[j + 1] = temp;
+        [students[j], students[j + 1]] = [students[j + 1], students[j]];
       }
     }
   }
@@ -77,9 +75,7 @@ function sortAvg(students) {
   for (let i = 0; i < students.length - 1; i++) {
     for (let j = 0; j < students.length - i - 1; j++) {
       if (students[j].avg < students[j + 1].avg) {
-        const temp = students[j];
-        students[j] = students[j + 1];
-        students[j + 1] = temp;
+        [students[j], students[j + 1]] = [students[j + 1], students[j]];
       }
     }
   }
@@ -87,12 +83,13 @@ function sortAvg(students) {
 }
 // 4. sau khi sắp xếp xong thì thêm vào từng object 1 thuộc tính level ( sẽ là xếp loại học lực của người đó vd: yếu giỏi tb tuỳ theo điểm trung bình 3 môn)
 function getLevel(students) {
-  sortAvg(students);
   const level = ["Yếu", "Trung Bình", "Giỏi"];
   for (let i = 0; i < students.length; i++) {
-    if (students[i].avg < 5) {
+    const avg =
+      (students[i].math + students[i].literature + students[i].english) / 3;
+    if (avg < 5) {
       students[i].level = level[0];
-    } else if (students[i].avg > 5 && students[i].avg < 8) {
+    } else if (avg < 8) {
       students[i].level = level[1];
     } else {
       students[i].level = level[2];
@@ -102,22 +99,27 @@ function getLevel(students) {
 }
 
 console.log("====================Sắp xếp theo điểm toán====================");
-sortMath(data).forEach(student => {
+sortMath(data).forEach((student) => {
   console.log(`${student.name}: ${student.math}`);
 });
 
-console.log("====================Người có điểm số cao nhất====================");
+console.log(
+  "====================Người có điểm số cao nhất===================="
+);
 const topStudent = maxScore(data);
 console.log(`${topStudent.name}: ${topStudent.avg.toFixed(2)}`);
 
-console.log("====================Sắp xếp theo điểm trung bình 3 môn====================");
-sortAvg(data).forEach(student => {
+console.log(
+  "====================Sắp xếp theo điểm trung bình 3 môn===================="
+);
+sortAvg(data).forEach((student) => {
   console.log(`${student.name}: ${student.avg.toFixed(2)}`);
 });
 
-// console.log("====================Xếp loại học lực====================");
-// getLevel(data).forEach(student => {
-//   console.log(`${student.name}: ${student.avg.toFixed(2)} - ${student.level}`);
-// });
 console.log("====================Xếp loại học lực====================");
-console.log(getLevel(data));
+getLevel(data).forEach((student) => {
+  const avg = (student.math + student.literature + student.english) / 3;
+  console.log(
+    `${student.name} - Avg: ${avg.toFixed(2)} - Học lực: ${student.level}`
+  );
+});
