@@ -1,5 +1,3 @@
-
-
 let items = document.querySelectorAll(".favorite-list-item");
 items.forEach((item) => {
   item.textContent = "I love this thing";
