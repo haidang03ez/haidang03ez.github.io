@@ -38,6 +38,10 @@ const getAllUser = () => {
           <td>${user.mathScore}</td>
           <td>${user.englishScore}</td>
           <td>${user.literatureScore}</td>
+          <td>
+            <button class="btn btn-primary" onclick="updateUser('${user.userId}')">Sửa</button>
+            <button class="btn btn-danger" onclick="deleteUser('${user.userId}')">Xóa</button>
+          </td>
         </tr>
       </thead>
     </table>`;
@@ -60,64 +64,101 @@ const getAllUser = () => {
   }
 })();
 
-
+//Tìm kiếm 
 const findUser = (event) => {
   event.preventDefault();
   
   const searchScore = Number(document.getElementById("search-score").value);
   const users = JSON.parse(localStorage.getItem("users")) || [];
-  const resultList = document.getElementById("search-result");
-  resultList.innerHTML = "";
+  const userList = document.getElementById("user-table-body");
+  userList.innerHTML = "";
 
   try {
-    const filteredUsers = users.filter(user => Number(user.mathScore) === searchScore);
+    const filteredUsers = users.filter(user => Number(user.literatureScore) === searchScore);
     if (filteredUsers.length === 0) {
-      resultList.innerHTML = `
+      userList.innerHTML = `
         <div class="alert alert-warning">
           Không tìm thấy học sinh nào có điểm ${searchScore}
         </div>`;
       return;
     }
 
-    const table = document.createElement("table");
-    table.className = "table table-striped mt-3";
-    table.innerHTML = `
-      <thead>
-        <tr>
-          <th>ID</th>
-          <th>Họ tên</th>
-          <th>Giới tính</th>
-          <th>Điểm Toán</th>
-          <th>Điểm Anh</th>
-          <th>Điểm Văn</th>
-        </tr>
-      </thead>
-      <tbody>
-        ${filteredUsers.map(user => `
-          <tr>
-            <td>${user.userId}</td>
-            <td>${user.name}</td>
-            <td>${user.gender === "male" ? "Nam" : "Nữ"}</td>
-            <td>${user.mathScore}</td>
-            <td>${user.englishScore}</td>
-            <td>${user.literatureScore}</td>
-          </tr>
-        `).join('')}
-      </tbody>
-    `;
-
-    resultList.appendChild(table);
-    console.log(`Tìm thấy ${filteredUsers.length} học sinh có điểm ${searchScore}`);
-
+    filteredUsers.forEach(user => {
+      const row = document.createElement("tr");
+      row.innerHTML = `
+        <td>${user.userId}</td>
+        <td>${user.name}</td>
+        <td>${user.gender === "male" ? "Nam" : "Nữ"}</td>
+        <td>${user.mathScore}</td>
+        <td>${user.englishScore}</td>
+        <td>${user.literatureScore}</td>
+      `;
+      userList.appendChild(row);
+    });
   } catch (error) {
     console.error("Lỗi tìm kiếm:", error);
-    resultList.innerHTML = `
+    userList.innerHTML = `
       <div class="alert alert-danger">
         Đã xảy ra lỗi khi tìm kiếm. Vui lòng thử lại.
       </div>`;
   }
 };
 
-const updateUser = () => {};
+const updateUser = (userId) => {
+  const users = JSON.parse(localStorage.getItem("users")) || [];
+  const user = users.find(u => u.userId === userId);
+  
+  if (!user) {
+    alert("Không tìm thấy học sinh!");
+    return;
+  }
+  document.getElementById("user-id").value = user.userId;
+  document.getElementById("user-name").value = user.name;
+  document.querySelector(`input[name="gender"][value="${user.gender}"]`).checked = true;
+  document.getElementById("math-score").value = user.mathScore;
+  document.getElementById("english-score").value = user.englishScore;
+  document.getElementById("literature-score").value = user.literatureScore;
 
-const deleteUser = () => {};
+  const submitBtn = document.getElementById("submit-btn");
+  submitBtn.textContent = "Cập nhật";
+  submitBtn.onclick = (e) => {
+    e.preventDefault();
+    
+    const updatedUser = {
+      userId: document.getElementById("user-id").value,
+      name: document.getElementById("user-name").value,
+      gender: document.querySelector('input[name="gender"]:checked').value,
+      mathScore: document.getElementById("math-score").value,
+      englishScore: document.getElementById("english-score").value,
+      literatureScore: document.getElementById("literature-score").value,
+    };
+
+    const userIndex = users.findIndex(u => u.userId === userId);
+    users[userIndex] = updatedUser;
+    localStorage.setItem("users", JSON.stringify(users));
+    
+    document.getElementById("input-form").reset();
+    submitBtn.textContent = "Thêm người dùng";
+    submitBtn.onclick = createUser;
+    
+
+    getAllUser();
+    alert("Cập nhật thành công!");
+  };
+};
+
+const deleteUser = (userId) => {
+  const users = JSON.parse(localStorage.getItem("users")) || [];
+  const user = users.find(u => u.userId === userId);
+  if (!user) {
+    alert("Không tìm thấy học sinh!");
+    return;
+  }
+  const confirmDelete = confirm(`Bạn có chắc chắn muốn xóa học sinh ${user.name}?`);
+  if (confirmDelete) {
+    const updatedUsers = users.filter(u => u.userId !== userId);
+    localStorage.setItem("users", JSON.stringify(updatedUsers));
+    getAllUser();
+    alert("Xóa thành công!");
+  }
+};
