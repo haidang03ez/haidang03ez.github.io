@@ -17,14 +17,7 @@
         <h1 class="text-center mb-4">Quản lý học sinh</h1>
         <div class="mb-3">
           <label class="form-label">ID</label>
-          <input
-            type="number"
-            class="form-control"
-            id="user-id"
-            placeholder="Nhập mã người dùng"
-            required
-            min="1"
-          />
+          <input type="text" class="form-control" id="user-id" disabled />
         </div>
 
         <div class="mb-3">
@@ -116,20 +109,62 @@
         </button>
       </form>
 
-      <form class="container mt-5 d-flex justify-content-around">
-        <label class="form-label">Tìm kiếm</label>
-        <div class="col-auto vw-20">
-          <input
-            type="number"
-            class="form-control"
-            id="search-score"
-            placeholder="Nhập điểm văn"
-          />
-        </div>
-        <div class="col-auto">
-          <button type="submit" class="btn btn-primary mb-3" onclick="findUser(event)">
-            Tìm
-          </button>
+      <!-- Tìm kiếm -->
+      <form class="container mt-5" id="search-form">
+        <div class="row g-3">
+          <div class="col-md-4">
+            <label class="form-label">Giới tính</label>
+            <select class="form-select" id="search-gender">
+              <option value="">Tất cả</option>
+              <option value="male">Nam</option>
+              <option value="female">Nữ</option>
+            </select>
+          </div>
+          <div class="col-md-4">
+            <label class="form-label">Môn học</label>
+            <select class="form-select" id="search-subject">
+              <option value="math">Toán</option>
+              <option value="literature">Văn</option>
+              <option value="english">Tiếng Anh</option>
+            </select>
+          </div>
+          <div class="col-md-4">
+            <label class="form-label">Tên học sinh</label>
+            <input
+              type="text"
+              class="form-control"
+              id="search-name"
+              placeholder="Nhập tên học sinh"
+            />
+          </div>
+          <div class="col-md-4">
+            <label class="form-label">Điểm số</label>
+            <input
+              type="number"
+              class="form-control"
+              id="search-score"
+              min="0"
+              max="10"
+              step="0.1"
+              placeholder="Nhập điểm"
+            />
+          </div>
+          <div class="col-12">
+            <button
+              type="submit"
+              class="btn btn-primary"
+              onclick="findUser(event)"
+            >
+              Tìm kiếm
+            </button>
+            <button
+              type="button"
+              class="btn btn-secondary"
+              onclick="resetSearch(event)"
+            >
+              Đặt lại
+            </button>
+          </div>
         </div>
       </form>
     </div>
@@ -143,15 +178,61 @@
             <th>Họ và tên</th>
             <th>Giới tính</th>
             <th>Điểm toán</th>
-            <th>Điểm văn</th>
             <th>Điểm tiếng anh</th>
+            <th>Điểm văn</th>
+            <th>Điểm trung bình</th>
             <th>Thao tác</th>
           </tr>
         </thead>
-        <tbody id="user-table-body">
-          <!-- Dữ liệu sẽ được thêm vào đây -->
-        </tbody>
+        <tbody id="user-table-body"></tbody>
       </table>
+    </div>
+
+    <div
+      class="d-flex justify-content-between align-items-center mt-4"
+      style="padding: 0 4.5rem"
+    >
+      <nav aria-label="Page navigation">
+        <ul class="pagination mb-0">
+          <li class="page-item">
+            <button
+              class="page-link"
+              id="prev-btn"
+              aria-label="Previous"
+              onclick="handlePreviousPage()"
+            >
+              <span aria-hidden="true">Previous</span>
+            </button>
+          </li>
+
+          <li class="page-item" id="pagination-numbers"></li>
+
+          <li class="page-item">
+            <button
+              class="page-link"
+              id="next-btn"
+              aria-label="Next"
+              onclick="handleNextPage()"
+            >
+              <span aria-hidden="true">Next</span>
+            </button>
+          </li>
+        </ul>
+      </nav>
+      <div id="select-number-page">
+        <label>Hiển thị</label>
+        <input
+          class="form-label"
+          type="number"
+          id="select-page-numbers"
+          placeholder="Số lượng hiển thị mỗi trang"
+          min="1"
+          required
+        />
+        <button class="btn btn-primary" onclick="handlePageSizeChange()">
+          Xác nhận
+        </button>
+      </div>
     </div>
 
     <script

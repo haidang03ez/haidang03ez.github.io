@@ -1,12 +1,85 @@
-// Tạo user 
+// Hàm tính điểm trung bình
+const averageScore = (mathScore, englishScore, literatureScore) => {
+  return (
+    (Number(mathScore) + Number(englishScore) + Number(literatureScore)) / 3
+  );
+};
+
+// Hàm tạo mã người dùng duy nhất
+const generateUserId = () => {
+  return Date.now() + "_" + Math.floor(Math.random() * 1000);
+};
+
+const pagination = {
+  currentPage: 1,
+  pageSize: 2,
+  totalPage: 0,
+};
+
+// Hàm điểu khiểm phân trang
+const handlePageSizeChange = () => {
+  const selectElement = document.getElementById("select-page-numbers");
+
+  if (!selectElement || !selectElement.value.trim()) {
+    alert("Vui lòng nhập số lượng");
+    return;
+  }
+
+  const value = Number(selectElement.value);
+  if (isNaN(value) || value < 1) {
+    alert("Vui lòng nhập số lượng hợp lệ (lớn hơn 0)!");
+    return;
+  }
+
+  pagination.pageSize = value;
+  pagination.currentPage = 1;
+  getAllUser();
+  paginationNumber();
+};
+
+const handleNextPage = () => {
+  if (pagination.currentPage < pagination.totalPage) {
+    pagination.currentPage++;
+    getAllUser();
+    paginationNumber();
+  } else {
+    alert("Đã đến trang cuối cùng!");
+  }
+};
+
+const handlePreviousPage = () => {
+  if (pagination.currentPage > 1) {
+    pagination.currentPage--;
+    getAllUser();
+    paginationNumber();
+  }
+};
+
+const paginationNumber = () => {
+  const numberPage = document.getElementById("pagination-numbers");
+  numberPage.innerHTML = `
+    <li class="page-item active">
+      <span class="page-link">
+        ${pagination.currentPage}
+      </span>
+    </li>
+  `;
+};
+
+// Tạo user
 const createUser = () => {
   const newUser = {
-    userId: document.getElementById("user-id").value,
+    userId: generateUserId(),
     name: document.getElementById("user-name").value,
     gender: document.querySelector('input[name="gender"]:checked').value,
     mathScore: document.getElementById("math-score").value,
     englishScore: document.getElementById("english-score").value,
     literatureScore: document.getElementById("literature-score").value,
+    averageScore: averageScore(
+      document.getElementById("math-score").value,
+      document.getElementById("english-score").value,
+      document.getElementById("literature-score").value
+    ),
   };
 
   let users = JSON.parse(localStorage.getItem("users")) || [];
@@ -20,40 +93,45 @@ const createUser = () => {
   alert("Thêm thành công!");
 };
 
-// Lất tất cả người dùng
+// Hàm lấy tất cả người dùng
 const getAllUser = () => {
   const users = JSON.parse(localStorage.getItem("users")) || [];
   const userList = document.getElementById("user-table-body");
   userList.innerHTML = "";
 
-  users.forEach((user) => {
+  pagination.totalPage = Math.ceil(users.length / pagination.pageSize); // Tính tổng số trang (sử dụng Ceil làm tròn lên số nguyên)
+  const startIndex = (pagination.currentPage - 1) * pagination.pageSize; // Tính điểm khởi đầu khi lấy dữ liệu trong danh sách data
+  const endIndex = startIndex + pagination.pageSize; // Tính điểm kết thúc khi lấy dữ liệu trong danh sách data
+  const paginatedUsers = users.slice(startIndex, endIndex); // Lấy dữ liệu trong danh sách data theo điểm bắt đầu và kết thúc
+
+  paginatedUsers.forEach((user) => {
     const userItem = document.createElement("tr");
     userItem.innerHTML = `
-    <table>
-      <thead>
-        <tr>
-          <td>${user.userId}</td>
-          <td>${user.name}</td>
-          <td>${user.gender === "male" ? "Nam" : "Nữ"}</td>
-          <td>${user.mathScore}</td>
-          <td>${user.englishScore}</td>
-          <td>${user.literatureScore}</td>
-          <td>
-            <button class="btn btn-primary" onclick="updateUser('${user.userId}')">Sửa</button>
-            <button class="btn btn-danger" onclick="deleteUser('${user.userId}')">Xóa</button>
-          </td>
-        </tr>
-      </thead>
-    </table>`;
+      <td>${user.userId}</td>
+      <td>${user.name}</td>
+      <td>${user.gender === "male" ? "Nam" : "Nữ"}</td>
+      <td>${user.mathScore}</td>
+      <td>${user.englishScore}</td>
+      <td>${user.literatureScore}</td>
+      <td>${user.averageScore}</td>
+      <td>
+        <button class="btn btn-primary" onclick="updateUser('${
+          user.userId
+        }')">Sửa</button>
+        <button class="btn btn-danger" onclick="deleteUser('${
+          user.userId
+        }')">Xóa</button>
+      </td>
+    `;
     userList.appendChild(userItem);
   });
-  return users;
 };
 
-// Tự động hàm getAllUser để lấy danh sách người dùng từ localStorage và hiển thị chúng trong bảng
-( () => {
+// Gọi hàm lấy tất cả người dùng khi trang được tải
+(() => {
   try {
-    const users =  getAllUser();
+    const users = getAllUser();
+    paginationNumber();
     if (users.length === 0) {
       console.log("Không có người dùng nào.");
     } else {
@@ -64,26 +142,62 @@ const getAllUser = () => {
   }
 })();
 
-//Tìm kiếm 
+// Hàm tìm kiếm người dùng
 const findUser = (event) => {
   event.preventDefault();
-  
+
+  const searchGender = document.getElementById("search-gender").value;
+  const searchSubject = document.getElementById("search-subject").value;
+  const searchName = document.getElementById("search-name").value.trim();
   const searchScore = Number(document.getElementById("search-score").value);
+
   const users = JSON.parse(localStorage.getItem("users")) || [];
   const userList = document.getElementById("user-table-body");
   userList.innerHTML = "";
 
   try {
-    const filteredUsers = users.filter(user => Number(user.literatureScore) === searchScore);
+    let filteredUsers = users;
+    if (searchGender) {
+      filteredUsers = filteredUsers.filter(
+        (user) => user.gender === searchGender
+      );
+    }
+
+    if (searchScore) {
+      switch (searchSubject) {
+        case "math":
+          filteredUsers = filteredUsers.filter(
+            (user) => Number(user.mathScore) === searchScore
+          );
+          break;
+        case "literature":
+          filteredUsers = filteredUsers.filter(
+            (user) => Number(user.literatureScore) === searchScore
+          );
+          break;
+        case "english":
+          filteredUsers = filteredUsers.filter(
+            (user) => Number(user.englishScore) === searchScore
+          );
+          break;
+      }
+    }
+
+    if (searchName) {
+      filteredUsers = filteredUsers.filter((user) =>
+        user.name.toLowerCase().includes(searchName.toLowerCase())
+      );
+    }
+
     if (filteredUsers.length === 0) {
       userList.innerHTML = `
         <div class="alert alert-warning">
-          Không tìm thấy học sinh nào có điểm ${searchScore}
+          Không tìm thấy học sinh nào phù hợp với tiêu chí tìm kiếm
         </div>`;
       return;
     }
 
-    filteredUsers.forEach(user => {
+    filteredUsers.forEach((user) => {
       const row = document.createElement("tr");
       row.innerHTML = `
         <td>${user.userId}</td>
@@ -92,6 +206,15 @@ const findUser = (event) => {
         <td>${user.mathScore}</td>
         <td>${user.englishScore}</td>
         <td>${user.literatureScore}</td>
+        <td>${user.averageScore}</td>
+        <td>
+          <button class="btn btn-primary" onclick="updateUser('${
+            user.userId
+          }')">Sửa</button>
+          <button class="btn btn-danger" onclick="deleteUser('${
+            user.userId
+          }')">Xóa</button>
+        </td>
       `;
       userList.appendChild(row);
     });
@@ -104,17 +227,30 @@ const findUser = (event) => {
   }
 };
 
+// Hàm reset tìm kiếm
+const resetSearch = (event) => {
+  event.preventDefault();
+  document.getElementById("search-gender").value = "";
+  document.getElementById("search-subject").value = "math";
+  document.getElementById("search-score").value = "";
+  document.getElementById("search-name").value = "";
+  getAllUser();
+};
+
+// Hàm cập nhật người dùng
 const updateUser = (userId) => {
   const users = JSON.parse(localStorage.getItem("users")) || [];
-  const user = users.find(u => u.userId === userId);
-  
+  const user = users.find((u) => u.userId === userId);
+
   if (!user) {
     alert("Không tìm thấy học sinh!");
     return;
   }
-  document.getElementById("user-id").value = user.userId;
+  document.getElementById("user-id").value = userId;
   document.getElementById("user-name").value = user.name;
-  document.querySelector(`input[name="gender"][value="${user.gender}"]`).checked = true;
+  document.querySelector(
+    `input[name="gender"][value="${user.gender}"]`
+  ).checked = true;
   document.getElementById("math-score").value = user.mathScore;
   document.getElementById("english-score").value = user.englishScore;
   document.getElementById("literature-score").value = user.literatureScore;
@@ -123,42 +259,51 @@ const updateUser = (userId) => {
   submitBtn.textContent = "Cập nhật";
   submitBtn.onclick = (e) => {
     e.preventDefault();
-    
+
     const updatedUser = {
-      userId: document.getElementById("user-id").value,
+      userId: userId,
       name: document.getElementById("user-name").value,
       gender: document.querySelector('input[name="gender"]:checked').value,
       mathScore: document.getElementById("math-score").value,
       englishScore: document.getElementById("english-score").value,
       literatureScore: document.getElementById("literature-score").value,
+      averageScore: averageScore(
+        document.getElementById("math-score").value,
+        document.getElementById("english-score").value,
+        document.getElementById("literature-score").value
+      ),
     };
 
-    const userIndex = users.findIndex(u => u.userId === userId);
+    const userIndex = users.findIndex((u) => u.userId === userId);
     users[userIndex] = updatedUser;
     localStorage.setItem("users", JSON.stringify(users));
-    
+
     document.getElementById("input-form").reset();
     submitBtn.textContent = "Thêm người dùng";
     submitBtn.onclick = createUser;
-    
 
     getAllUser();
     alert("Cập nhật thành công!");
   };
 };
 
+// Hàm xóa người dùng
 const deleteUser = (userId) => {
   const users = JSON.parse(localStorage.getItem("users")) || [];
-  const user = users.find(u => u.userId === userId);
+  const user = users.find((u) => u.userId === userId);
   if (!user) {
     alert("Không tìm thấy học sinh!");
     return;
   }
-  const confirmDelete = confirm(`Bạn có chắc chắn muốn xóa học sinh ${user.name}?`);
+  const confirmDelete = confirm(
+    `Bạn có chắc chắn muốn xóa học sinh ${user.name}?`
+  );
   if (confirmDelete) {
-    const updatedUsers = users.filter(u => u.userId !== userId);
+    const updatedUsers = users.filter((u) => u.userId !== userId);
     localStorage.setItem("users", JSON.stringify(updatedUsers));
+    pagination.currentPage = 1;
     getAllUser();
+    paginationNumber();
     alert("Xóa thành công!");
   }
 };
