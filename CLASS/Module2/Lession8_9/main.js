@@ -16,7 +16,9 @@ const pagination = {
   totalPage: 0,
 };
 
-// Hàm điểu khiểm phân trang
+// Hàm điểu khiển phân trang
+
+// Thay đổi số lượng hiển thị
 const handlePageSizeChange = () => {
   const selectElement = document.getElementById("select-page-numbers");
 
@@ -37,6 +39,7 @@ const handlePageSizeChange = () => {
   paginationNumber();
 };
 
+// Tiến lên trang sau
 const handleNextPage = () => {
   if (pagination.currentPage < pagination.totalPage) {
     pagination.currentPage++;
@@ -47,6 +50,7 @@ const handleNextPage = () => {
   }
 };
 
+// Trở về trang trước
 const handlePreviousPage = () => {
   if (pagination.currentPage > 1) {
     pagination.currentPage--;
@@ -55,15 +59,27 @@ const handlePreviousPage = () => {
   }
 };
 
+//Hiển thị số trang
 const paginationNumber = () => {
   const numberPage = document.getElementById("pagination-numbers");
-  numberPage.innerHTML = `
-    <li class="page-item active">
-      <span class="page-link">
-        ${pagination.currentPage}
-      </span>
-    </li>
-  `;
+  numberPage.innerHTML = '';
+
+  for(let i = 1; i <= pagination.totalPage; i++) {
+    numberPage.innerHTML += `
+      <li class="page-item ${i === pagination.currentPage ? 'active' : ''}">
+        <button class="page-link" onclick="handlePageChange(${i})">
+          ${i}
+        </button>
+      </li>
+    `;
+  }
+};
+
+// Chuyển tới trang được chọn
+const handlePageChange = (pageNumber) => {
+  pagination.currentPage = pageNumber;
+  getAllUser();
+  paginationNumber();
 };
 
 // Tạo user
