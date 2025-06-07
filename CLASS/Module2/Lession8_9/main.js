@@ -12,7 +12,7 @@ const generateUserId = () => {
 
 const pagination = {
   currentPage: 1,
-  pageSize: 2,
+  pageSize: 5,
   totalPage: 0,
 };
 
@@ -62,11 +62,11 @@ const handlePreviousPage = () => {
 //Hiển thị số trang
 const paginationNumber = () => {
   const numberPage = document.getElementById("pagination-numbers");
-  numberPage.innerHTML = '';
+  numberPage.innerHTML = "";
 
-  for(let i = 1; i <= pagination.totalPage; i++) {
+  for (let i = 1; i <= pagination.totalPage; i++) {
     numberPage.innerHTML += `
-      <li class="page-item ${i === pagination.currentPage ? 'active' : ''}">
+      <li class="page-item ${i === pagination.currentPage ? "active" : ""}">
         <button class="page-link" onclick="handlePageChange(${i})">
           ${i}
         </button>
@@ -104,9 +104,18 @@ const createUser = () => {
     return;
   }
 
-  users.push(newUser);
-  localStorage.setItem("users", JSON.stringify(users));
-  alert("Thêm thành công!");
+  if (newUser.englishScore < 0 || newUser.englishScore > 10) {
+    alert("Điểm tiếng anh không hợp lệ");
+  } else if (newUser.mathScore < 0 || newUser.mathScore > 10) {
+    alert("Điểm toán không hợp lệ");
+  } else if (newUser.literatureScore < 0 || newUser.literatureScore > 10) {
+    alert("Điểm văn không hợp lệ");
+  } else {
+    users.push(newUser);
+    localStorage.setItem("users", JSON.stringify(users));
+    getAllUser();
+    alert("Thêm thành công!");
+  }
 };
 
 // Hàm lấy tất cả người dùng
