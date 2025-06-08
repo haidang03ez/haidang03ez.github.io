@@ -63,8 +63,15 @@ const handlePreviousPage = () => {
 const paginationNumber = () => {
   const numberPage = document.getElementById("pagination-numbers");
   numberPage.innerHTML = "";
+  
+  let startPage = Math.max(1, pagination.currentPage - 2);
+  let endPage = Math.min(pagination.totalPage, startPage + 4);
+  
+  if (endPage - startPage < 4) {
+    startPage = Math.max(1, endPage - 4);
+  }
 
-  for (let i = 1; i <= pagination.totalPage; i++) {
+  for (let i = startPage; i <= endPage; i++) {
     numberPage.innerHTML += `
       <li class="page-item ${i === pagination.currentPage ? "active" : ""}">
         <button class="page-link" onclick="handlePageChange(${i})">

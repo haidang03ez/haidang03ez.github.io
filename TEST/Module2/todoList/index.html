@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Todo-List</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+      crossorigin="anonymous"
+    />
+  </head>
+  <body style="font-family: 'Be Vietnam Pro', sans-serif">
+    <div class="container mt-5">
+      <h1 class="text-center mb-4">#todo</h1>
+
+      <!-- Nav tabs -->
+      <ul
+        class="nav nav-tabs d-flex justify-content-around"
+        id="myTab"
+        role="tablist"
+      >
+        <li class="nav-item" role="presentation">
+          <button
+            class="nav-link active"
+            id="all-tab"
+            data-bs-toggle="tab"
+            data-bs-target="#all"
+            type="button"
+            role="tab"
+            onclick="handleTabChange('all')"
+          >
+            All
+          </button>
+        </li>
+        <li class="nav-item" role="presentation">
+          <button
+            class="nav-link"
+            id="active-tab"
+            data-bs-toggle="tab"
+            data-bs-target="#active"
+            type="button"
+            role="tab"
+            onclick="handleTabChange('active')"
+          >
+            Active
+          </button>
+        </li>
+        <li class="nav-item" role="presentation">
+          <button
+            class="nav-link"
+            id="completed-tab"
+            data-bs-toggle="tab"
+            data-bs-target="#completed"
+            type="button"
+            role="tab"
+            onclick="handleTabChange('completed')"
+          >
+            Completed
+          </button>
+        </li>
+      </ul>
+
+      <!-- Tab content -->
+      <div class="tab-content" id="myTabContent">
+        <!-- all -->
+        <div class="tab-pane fade show active" id="all" role="tabpanel">
+          <form class="input-group mb-3 mt-3 gap-4">
+            <input
+              id="add-task-input"
+              type="text"
+              class="form-control"
+              placeholder="Thêm công việc . . ."
+              aria-label="Taskname"
+              required
+            />
+            <button class="btn btn-primary" type="submit" onclick="addTask()">
+              Thêm
+            </button>
+          </form>
+          <div id="data-task">
+            <h5 class="text-center">Danh sách công việc</h5>
+            <div id="data-table-all"></div>
+          </div>
+        </div>
+        <!-- active -->
+        <div class="tab-pane fade" id="active" role="tabpanel">
+          <div id="data-task">
+            <h5 class="text-center mt-5">Danh sách đang làm</h5>
+            <div id="data-table-active"></div>
+          </div>
+        </div>
+        <!-- complete -->
+        <div class="tab-pane fade" id="completed" role="tabpanel">
+          <div id="data-task">
+            <h5 class="text-center mt-5">Danh sách hoàn thành</h5>
+            <div id="data-table-complete"></div>
+          </div>
+        </div>
+
+        <!-- Phân trang -->
+        <div
+          class="d-flex justify-content-between align-items-center mt-4"
+          style="padding: 1rem 0rem"
+        >
+          <nav aria-label="Page navigation">
+            <ul class="pagination mb-0">
+              <li class="page-item">
+                <button
+                  class="page-link"
+                  id="prev-btn"
+                  aria-label="Previous"
+                  onclick="handlePreviousPage()"
+                >
+                  <span aria-hidden="true">Previous</span>
+                </button>
+              </li>
+
+              <li class="page-item d-flex" id="pagination-numbers"></li>
+
+              <li class="page-item">
+                <button
+                  class="page-link"
+                  id="next-btn"
+                  aria-label="Next"
+                  onclick="handleNextPage()"
+                >
+                  <span aria-hidden="true">Next</span>
+                </button>
+              </li>
+            </ul>
+          </nav>
+          <div id="select-number-page">
+            <label>Hiển thị</label>
+            <input
+              class="form-label"
+              type="number"
+              id="select-page-numbers"
+              placeholder="Số lượng hiển thị mỗi trang"
+              min="1"
+              required
+            />
+            <button class="btn btn-primary" onclick="handlePageSizeChange()">
+              Xác nhận
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"
+      integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"
+      integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF"
+      crossorigin="anonymous"
+    ></script>
+    <script src="main.js"></script>
+  </body>
+</html>
