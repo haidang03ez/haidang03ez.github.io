@@ -16,7 +16,7 @@ const login = () => {
     currentUser = user;
     result.textContent = `Xin chào ${user.first_name} ${user.last_name}`;
 
-    document.getElementById("auth-section").style.display = "none";
+    document.getElementById("auth-check").style.display = "none";
     document.getElementById("main-features").style.display = "block";
   } else {
     result.textContent = "Thông tin tài khoản không chính xác";
@@ -57,7 +57,7 @@ const register = () => {
 // Đăng xuất
 const logout = () => {
   currentUser = null;
-  document.getElementById("auth-section").style.display = "block";
+  document.getElementById("auth-check").style.display = "block";
   document.getElementById("main-features").style.display = "none";
 
   document.getElementById("loginEmail").value = "";
