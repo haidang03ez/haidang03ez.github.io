@@ -1,0 +1,77 @@
+.banner-section {
+  margin-top: -175px;
+  min-height: calc(70vh - 76px);
+  display: flex;
+  align-items: center;
+  background-color: #fff3cd;
+}
+
+.banner-image {
+  max-width: 100%;
+  height: auto;
+}
+
+.restaurant-section {
+  padding: 60px ;
+  background-color: #ffffff;
+}
+
+.restaurant-title {
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: 40px;
+  color: #0f2137;
+}
+
+.restaurant-card {
+  transition: all 0.3s ease-in-out;
+  border: none;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.05);
+}
+
+.restaurant-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.1);
+}
+
+.restaurant-image {
+  height: 200px;
+  object-fit: cover;
+  width: 100%;
+}
+
+.restaurant-name {
+  font-weight: 600;
+  font-size: 1rem;
+  color: #0f2137;
+}
+
+.restaurant-tags {
+  font-size: 0.9rem;
+  color: #77838f;
+}
+
+.discover-btn {
+  margin-top: 30px;
+  background-color: #00c58d;
+  border: none;
+  padding: 12px 28px;
+  font-weight: 600;
+  color: white;
+  border-radius: 8px;
+  transition: background-color 0.3s ease;
+}
+
+.discover-btn:hover {
+  background-color: #00a97f;
+}
+
+button.btn.btn-success.px-4.py-2 {
+  background-color: #00cc99 !important;
+  border: none !important;
+  border-radius: 4rem !important;
+  width: 15rem;
+  height: 5rem;
+}

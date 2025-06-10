@@ -139,6 +139,7 @@ const handlePageChange = (pageNumber) => {
   paginationNumber();
 };
 
+//Phân trang theo tab: all, active, complete
 const handleTabChange = (tab) => {
   currentTab = tab;
   pagination.currentPage = 1;
@@ -289,7 +290,6 @@ const toggleStatus = (taskName) => {
 };
 
 //Load danh sách
-
 let currentTab = "all";
 window.onload = () => {
   try {

@@ -1,0 +1,40 @@
+.navbar {
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+}
+
+.navbar-brand img {
+  height: 30px;
+  margin-right: 5px;
+}
+
+.nav-link.active {
+  color: #00c896 !important; 
+}
+
+.btn-join {
+  background-color: #003554;
+  color: white;
+  border-radius: 30px;
+  padding: 8px 20px;
+  font-weight: 600;
+}
+
+.btn-join:hover {
+  background-color: #002744;
+}
+
+.nav-link {
+  color: #002744 !important;
+  font-weight: 500;
+}
+
+.navbar {
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+}
