@@ -46,9 +46,23 @@ const handlePageSizeChange = () => {
 
   pagination.pageSize = value;
   pagination.currentPage = 1;
-  getAllTask();
-  getActiveTask();
-  getCompleteTask();
+  const tasks = JSON.parse(localStorage.getItem("task")) || [];
+  switch (currentTab) {
+    case "all":
+      pagination.totalPage = Math.ceil(tasks.length / value);
+      getAllTask();
+      break;
+    case "active":
+      const activeTasks = tasks.filter((task) => task.statusTask === true);
+      pagination.totalPage = Math.ceil(activeTasks.length / value);
+      getActiveTask();
+      break;
+    case "completed":
+      const completedTasks = tasks.filter((task) => task.statusTask === false);
+      pagination.totalPage = Math.ceil(completedTasks.length / value);
+      getCompleteTask();
+      break;
+  }
   paginationNumber();
 };
 
@@ -81,6 +95,23 @@ const paginationNumber = () => {
   const numberPage = document.getElementById("pagination-numbers");
   numberPage.innerHTML = "";
 
+  const tasks = JSON.parse(localStorage.getItem("task")) || [];
+  let totalItems = 0;
+
+  switch (currentTab) {
+    case "all":
+      totalItems = tasks.length;
+      break;
+    case "active":
+      totalItems = tasks.filter((task) => task.statusTask === true).length;
+      break;
+    case "completed":
+      totalItems = tasks.filter((task) => task.statusTask === false).length;
+      break;
+  }
+
+  pagination.totalPage = Math.ceil(totalItems / pagination.pageSize);
+
   let startPage = Math.max(1, pagination.currentPage - 2);
   let endPage = Math.min(pagination.totalPage, startPage + 4);
 
@@ -108,20 +139,28 @@ const handlePageChange = (pageNumber) => {
   paginationNumber();
 };
 
-let currentTab = "all";
-
 const handleTabChange = (tab) => {
   currentTab = tab;
   pagination.currentPage = 1;
+  const tasks = JSON.parse(localStorage.getItem("task")) || [];
 
   switch (tab) {
     case "all":
+      pagination.totalPage = Math.ceil(tasks.length / pagination.pageSize);
       getAllTask();
       break;
     case "active":
+      const activeTasks = tasks.filter((task) => task.statusTask === true);
+      pagination.totalPage = Math.ceil(
+        activeTasks.length / pagination.pageSize
+      );
       getActiveTask();
       break;
     case "completed":
+      const completedTasks = tasks.filter((task) => task.statusTask === false);
+      pagination.totalPage = Math.ceil(
+        completedTasks.length / pagination.pageSize
+      );
       getCompleteTask();
       break;
   }
@@ -157,6 +196,7 @@ const getAllTask = () => {
         `;
     taskList.appendChild(taskItem);
   });
+  paginationNumber();
 };
 
 // Hiển thị danh sách Active
@@ -169,7 +209,7 @@ const getActiveTask = () => {
   pagination.totalPage = Math.ceil(activeTasks.length / pagination.pageSize);
   const startIndex = (pagination.currentPage - 1) * pagination.pageSize;
   const endIndex = startIndex + pagination.pageSize;
-  const paginatedTask = tasks.slice(startIndex, endIndex);
+  const paginatedTask = activeTasks.slice(startIndex, endIndex);
 
   paginatedTask.forEach((task) => {
     if (task.statusTask === true) {
@@ -191,6 +231,7 @@ const getActiveTask = () => {
       taskList.appendChild(taskItem);
     }
   });
+  paginationNumber();
 };
 
 // Hiển thị danh sách Complete
@@ -220,9 +261,16 @@ const getCompleteTask = () => {
           ${task.nameTask}
         </label>
       </div>
+      <button 
+        class="btn btn-danger btn-sm"
+        onclick="deleteTask('${task.nameTask}')"
+        >
+        Xóa
+      </button>
     `;
     taskList.appendChild(taskItem);
   });
+  paginationNumber();
 };
 
 // Chuyển trạng thái
@@ -237,21 +285,57 @@ const toggleStatus = (taskName) => {
   localStorage.setItem("task", JSON.stringify(tasks));
   getAllTask();
   getActiveTask();
+  getCompleteTask();
 };
 
 //Load danh sách
+
+let currentTab = "all";
 window.onload = () => {
   try {
-    getAllTask();
-    getActiveTask();
-    paginationNumber();
+    const tasks = JSON.parse(localStorage.getItem("task")) || [];
+    const selectElement = document.getElementById("select-page-numbers");
+    if (selectElement) {
+      selectElement.value = pagination.pageSize;
+    }
+    pagination.totalPage = Math.ceil(tasks.length / pagination.pageSize);
+    handleTabChange("all");
   } catch (error) {
-    console.error("Error loading tasks:", error);
+    console.error("Lỗi khởi tạo:", error);
   }
 };
 
 // Xóa công việc
-const deleteTask = () => {};
+const deleteTask = (taskName) => {
+  if (confirm(`Bạn có chắc chắn muốn xóa công việc "${taskName}" không?`)) {
+    let tasks = JSON.parse(localStorage.getItem("task")) || [];
+    tasks = tasks.filter(task => task.nameTask !== taskName);
+    localStorage.setItem("task", JSON.stringify(tasks));
+
+    pagination.totalPage = Math.ceil(tasks.length / pagination.pageSize);
+    
+    if (pagination.currentPage > pagination.totalPage) {
+      pagination.currentPage = Math.max(1, pagination.totalPage);
+    }
+
+    getAllTask();
+    getActiveTask();
+    getCompleteTask();
+    paginationNumber();
+  }
+};
 
 // Xóa toàn bộ
-const deleteAllTask = () => {};
+const deleteAllTask = () => {
+  if (confirm("Bạn có chắc chắn muốn xóa tất cả công việc không?")) {
+    localStorage.removeItem("task");
+    
+    pagination.currentPage = 1;
+    pagination.totalPage = 0;
+
+    getAllTask();
+    getActiveTask();
+    getCompleteTask();
+    paginationNumber();
+  }
+};
