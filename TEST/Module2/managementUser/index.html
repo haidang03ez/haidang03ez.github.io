@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+      crossorigin="anonymous"
+    />
+  </head>
+  <body style="font-family: 'Be Vietnam Pro', sans-serif">
+    <div class="container py-5">
+      <h1 class="text-center mb-5">Quản Lý Users & Posts</h1>
+
+      <div id="auth-section">
+        <!-- Đăng nhập -->
+        <section class="mb-5">
+          <h3>Đăng nhập</h3>
+          <input
+            type="email"
+            id="loginEmail"
+            class="form-control mb-2"
+            placeholder="Email"
+          />
+          <input
+            type="password"
+            id="loginPassword"
+            class="form-control mb-2"
+            placeholder="Mật khẩu"
+          />
+          <button class="btn btn-primary" onclick="login()">Đăng nhập</button>
+          <p id="loginResult" class="mt-2 text-danger"></p>
+        </section>
+
+        <!-- Đăng ký -->
+        <section class="mb-5">
+          <h3>Đăng ký</h3>
+          <input
+            type="text"
+            id="regFirstName"
+            class="form-control mb-2"
+            placeholder="Họ"
+          />
+          <input
+            type="text"
+            id="regLastName"
+            class="form-control mb-2"
+            placeholder="Tên"
+          />
+          <input
+            type="email"
+            id="regEmail"
+            class="form-control mb-2"
+            placeholder="Email"
+          />
+          <input
+            type="password"
+            id="regPassword"
+            class="form-control mb-2"
+            placeholder="Mật khẩu"
+          />
+          <button class="btn btn-success" onclick="register()">Đăng ký</button>
+          <p id="registerResult" class="mt-2 text-danger"></p>
+        </section>
+      </div>
+
+      <div id="main-features" style="display: none">
+        <!-- Danh sách Users -->
+        <section class="mb-5">
+          <h3>Danh sách người dùng</h3>
+          <input
+            type="text"
+            id="userKeyword"
+            class="form-control mb-2"
+            placeholder="Tìm kiếm theo tên hoặc email"
+          />
+          <button class="btn btn-secondary" onclick="listUsers()">
+            Tìm kiếm
+          </button>
+          <div class="mt-3">
+            <table class="table table-bordered table-striped">
+              <thead class="table-light">
+                <tr>
+                  <th>ID</th>
+                  <th>Họ tên</th>
+                  <th>Email</th>
+                </tr>
+              </thead>
+              <tbody id="userList"></tbody>
+            </table>
+          </div>
+        </section>
+
+        <!-- Danh sách Posts -->
+        <section class="mb-5">
+          <h3>Danh sách bài viết</h3>
+          <button class="btn btn-info" onclick="listPosts()">
+            Hiển thị tất cả bài viết
+          </button>
+          <div class="mt-3">
+            <table class="table table-bordered table-striped">
+              <thead class="table-light">
+                <tr>
+                  <th>ID</th>
+                  <th>Tiêu đề</th>
+                  <th>Ngày tạo</th>
+                  <th>Tác giả</th>
+                </tr>
+              </thead>
+              <tbody id="postList"></tbody>
+            </table>
+          </div>
+        </section>
+
+        <!-- Chi tiết Post -->
+        <section class="mb-5">
+          <h3>Xem chi tiết bài viết</h3>
+          <input
+            type="number"
+            id="detailPostId"
+            class="form-control mb-2"
+            placeholder="Nhập ID bài viết"
+          />
+          <button class="btn btn-warning" onclick="viewPostDetail()">
+            Xem chi tiết
+          </button>
+          <div id="postDetail" class="mt-3"></div>
+        </section>
+
+        <!-- Tìm kiếm bài viết theo email người dùng -->
+        <section class="mb-5">
+          <h3>Tìm bài viết theo email người dùng</h3>
+          <input
+            type="email"
+            id="searchPostEmail"
+            class="form-control mb-2"
+            placeholder="Nhập email"
+          />
+          <button class="btn btn-dark" onclick="searchPostsByUser()">
+            Tìm bài viết
+          </button>
+          <div id="userPosts" class="mt-3"></div>
+        </section>
+
+        <button class="btn btn-danger" onclick="logout()">Đăng xuất</button>
+      </div>
+    </div>
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"
+      integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"
+      integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF"
+      crossorigin="anonymous"
+    ></script>
+    <script src="users.js"></script>
+    <script src="posts.js"></script>
+    <script src="main.js"></script>
+  </body>
+</html>
