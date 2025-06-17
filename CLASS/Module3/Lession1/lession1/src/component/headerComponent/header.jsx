@@ -1,7 +1,7 @@
 import React from "react";
-import "./style.css";
+import "./Header.css";
 
-export const Header = () => {
+export const Header = ({ brandName = "brand-name"}) => {
   return (
     <div className="header">
       <nav className="navbar navbar-expand-lg bg-white shadow-sm">
@@ -11,7 +11,7 @@ export const Header = () => {
               src="https://upload.wikimedia.org/wikipedia/commons/a/a7/React-icon.svg"
               alt="Logo"
             />
-            <strong>React Next</strong>
+            <strong>{brandName}</strong>
           </a>
           <div className="collapse navbar-collapse justify-content-between">
             <ul className="navbar-nav me-auto mb-2 mb-lg-0">

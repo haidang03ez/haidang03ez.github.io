@@ -1,19 +1,14 @@
 import "./App.css";
-import 'bootstrap/dist/css/bootstrap.min.css';
-import 'bootstrap/dist/js/bootstrap.bundle.min.js';
-import { Header } from "./component/headerComponent/Header";
-import { Footer } from "./component/footerComponent/Footer";
-import { HomePage } from "./component/homeComponent/homePage";
-
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import { HomeScreen } from "./screens/homeScreen";
 
 function App() {
-
   return (
-    <>
-      <Header/>
-      <HomePage/>
-      <Footer/>
-    </>
+    <Router>
+      <Routes>
+        <Route path="/" element={<HomeScreen />} />
+      </Routes>
+    </Router>
   );
 }
 

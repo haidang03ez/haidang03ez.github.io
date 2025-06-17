@@ -1,7 +1,7 @@
 import React from "react";
-import "./style.css";
+import "./Footer.css";
 
-export const Footer = () => {
+export const Footer = ({ companyName = "company-name", brandName = "brand-name"}) => {
   return (
     <>
       <footer className="bg-white border-top py-3">
@@ -12,10 +12,10 @@ export const Footer = () => {
               alt="Logo"
               style={{ height: "30px", marginRight: "8px" }}
             />
-            <strong className="me-2">React Next</strong>
+            <strong className="me-2">{brandName}</strong>
             <span className="text-muted me-1">Copyright © 2025</span>
             <a href="#" className="text-decoration-none">
-              RedQ, Inc.
+              {companyName}
             </a>
           </div>
 
